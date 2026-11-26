@@ -1,0 +1,164 @@
+{
+  "synthetic": true,
+  "records": [
+    {
+      "id": "request-A",
+      "kind": "request",
+      "refs": [],
+      "resident": "resident-A",
+      "group": "group-A",
+      "program": "program-A",
+      "windows": [
+        [
+          "2026-12-06T14:00:00+08:00",
+          "2026-12-06T16:00:00+08:00"
+        ]
+      ],
+      "wheelchair_access": true
+    },
+    {
+      "id": "request-B",
+      "kind": "request",
+      "refs": [],
+      "resident": "resident-B",
+      "group": "group-B",
+      "program": "program-A",
+      "windows": [
+        [
+          "2026-12-06T14:00:00+08:00",
+          "2026-12-06T16:00:00+08:00"
+        ]
+      ],
+      "wheelchair_access": false
+    },
+    {
+      "id": "program-A",
+      "kind": "program",
+      "refs": [],
+      "name": "运河旧事",
+      "required_performers": [
+        "artist-A",
+        "artist-B"
+      ],
+      "license": "license-A"
+    },
+    {
+      "id": "license-A",
+      "kind": "license",
+      "refs": [],
+      "performers": [
+        "artist-A",
+        "artist-B"
+      ],
+      "commercial": false,
+      "ends": "2026-12-31T00:00:00+08:00"
+    },
+    {
+      "id": "license-sub",
+      "kind": "license",
+      "refs": [],
+      "performers": [
+        "artist-C",
+        "artist-B"
+      ],
+      "commercial": false,
+      "ends": "2026-12-31T00:00:00+08:00"
+    },
+    {
+      "id": "venue-A",
+      "kind": "venue",
+      "refs": [],
+      "zone": "east",
+      "shared_exit": "exit-A",
+      "capacity": 25,
+      "wheelchair_access": true
+    },
+    {
+      "id": "venue-B",
+      "kind": "venue",
+      "refs": [],
+      "zone": "west",
+      "shared_exit": "exit-A",
+      "capacity": 25,
+      "wheelchair_access": false
+    },
+    {
+      "id": "show-A",
+      "kind": "proposal",
+      "refs": [
+        "request-A",
+        "request-B",
+        "program-A",
+        "venue-A"
+      ],
+      "start": "2026-12-06T14:00:00+08:00",
+      "end": "2026-12-06T16:00:00+08:00",
+      "expected_people": 25
+    },
+    {
+      "id": "other-show",
+      "kind": "external_commitment",
+      "refs": [
+        "venue-B"
+      ],
+      "artist": "artist-A",
+      "start": "2026-12-06T16:00:00+08:00",
+      "end": "2026-12-06T17:00:00+08:00",
+      "expected_people": 20
+    },
+    {
+      "id": "closure-A",
+      "kind": "venue_fact",
+      "refs": [
+        "venue-A"
+      ],
+      "at": "2026-12-06T12:00:00+08:00",
+      "fact": "wheelchair_route_closed"
+    },
+    {
+      "id": "sub-A",
+      "kind": "substitution_input",
+      "refs": [
+        "show-A",
+        "license-sub"
+      ],
+      "old_artist": "artist-A",
+      "new_artist": "artist-C",
+      "sponsor_promotion": true
+    },
+    {
+      "id": "resident-choice",
+      "kind": "change_response",
+      "refs": [
+        "request-A",
+        "show-A"
+      ],
+      "accepted": false,
+      "reason": "通行条件不符"
+    },
+    {
+      "id": "performance-A",
+      "kind": "performance_input",
+      "refs": [
+        "show-A"
+      ],
+      "actual_programs": [
+        "program-A"
+      ],
+      "performers": [
+        "artist-C"
+      ],
+      "confirmed_fraction": null
+    }
+  ],
+  "principals": {
+    "resident-A": "resident-A",
+    "resident-B": "resident-B",
+    "community-A": "community",
+    "artist-A": "artist-A",
+    "artist-B": "artist-B",
+    "artist-C": "artist-C",
+    "venue-user": "venue",
+    "reviewer-A": "independent-community-review"
+  }
+}

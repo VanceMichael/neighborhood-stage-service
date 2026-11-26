@@ -1,0 +1,68 @@
+{
+  "synthetic": true,
+  "commands": [
+    {
+      "id": "venue-confirm",
+      "operation": "venue",
+      "refs": [
+        "show-A",
+        "venue-A"
+      ],
+      "request": {
+        "show": "show-A",
+        "venue": "venue-A"
+      },
+      "response_status": 202,
+      "observations": [
+        {
+          "state": "confirmed",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "preparation-pay",
+      "operation": "payment",
+      "refs": [
+        "show-A"
+      ],
+      "request": {
+        "show": "show-A",
+        "artist": "artist-A",
+        "kind": "preparation",
+        "amount": 2000
+      },
+      "response_status": 504,
+      "observations": [
+        {
+          "state": "pending"
+        },
+        {
+          "state": "paid",
+          "amount": 2000,
+          "voucher": "STAGE-P1"
+        }
+      ]
+    },
+    {
+      "id": "performance-pay",
+      "operation": "payment",
+      "refs": [
+        "show-A"
+      ],
+      "request": {
+        "show": "show-A",
+        "artist": "artist-C",
+        "kind": "performance",
+        "amount": 10000
+      },
+      "response_status": 202,
+      "observations": [
+        {
+          "state": "rejected",
+          "reason": "履行份额未确认"
+        }
+      ]
+    }
+  ]
+}
